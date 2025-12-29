@@ -35,15 +35,11 @@ for item in yaml_data['item']:
     xml_tree.SubElement(item_element, 'pubDate').text = item['published']
     xml_tree.SubElement(item_element, 'guid').text = link_prefix + item['file']
 
-    xml_tree.SubElement(item_element, 'enclosure', {
+    enclosure = xml_tree.SubElement(item_element, 'enclosure', {
         'url': link_prefix + item['file'],
         'type': 'audio/mpeg',
         'length': str(item['length'])
     })
-
-
-
-
 
 output_tree = xml_tree.ElementTree(rss_element)
 output_tree.write('music.xml', encoding='UTF-8', xml_declaration=True)
